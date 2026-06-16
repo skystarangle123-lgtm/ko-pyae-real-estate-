@@ -1,86 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+  <meta name="description" content="Ko Pyae Real Estate – AI Smart CRM"/>
+  <meta name="theme-color" content="#0A1628"/>
+  <title>Ko Pyae Real Estate – AI Smart CRM</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='50' font-size='90' text-anchor='middle' dominant-baseline='middle'>🏛️</text></svg>">
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
 
+<!-- ══════════ HERO ══════════ -->
+<div class="hero">
+  <div class="hero-lines">
+    <svg viewBox="0 0 1000 200" preserveAspectRatio="xMidYMid slice">
+      <line x1="0" y1="40" x2="1000" y2="40" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="0" y1="160" x2="1000" y2="160" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="120" y1="0" x2="120" y2="200" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="880" y1="0" x2="880" y2="200" stroke="#C9A84C" stroke-width="0.5"/>
+      <line x1="820" y1="0" x2="1000" y2="120" stroke="#C9A84C" stroke-width="0.8"/>
+      <line x1="0" y1="80" x2="180" y2="200" stroke="#C9A84C" stroke-width="0.8"/>
+      <polygon points="500,10 520,30 500,50 480,30" fill="none" stroke="#C9A84C" stroke-width="1"/>
+      <polygon points="500,18 512,30 500,42 488,30" fill="rgba(201,168,76,0.15)" stroke="#C9A84C" stroke-width="0.5"/>
+    </svg>
+  </div>
 
+  <div class="hero-inner">
+    <div class="brand-mark">
+      <div class="corner-mark tl"></div>
+      <div class="corner-mark tr"></div>
+      <div class="corner-mark bl"></div>
+      <div class="corner-mark br"></div>
+      <div class="brand-icon">🏛️</div>
+    </div>
 
+    <div class="brand-text">
+      <div class="brand-eyebrow">Premium Real Estate</div>
+      <div class="brand-name">Ko <span>Pyae</span></div>
+      <div class="brand-sub">Real Estate · AI-Powered CRM · Myanmar</div>
+    </div>
 
+    <div class="contact-cluster">
+      <div class="contact-pill">
+        <span class="ph-icon">📞</span>
+        09 789 782 619
+      </div>
+      <div class="contact-pill">
+        <span class="ph-icon">📞</span>
+        09 428 240 003
+      </div>
+    </div>
+  </div>
 
-🏛️
-PREMIUM REAL ESTATE
-Ko Pyae
-Real Estate · AI-Powered CRM · Myanmar
-📞
-09 789 782 619
-📞
-09 428 240 003
+  <div class="ai-strip">
+    <div class="ai-dot"></div>
+    <span class="ai-tag">AI ACTIVE</span>
+    <span>Unstructured data → auto-classified → structured storage</span>
+    <span style="margin-left:auto;opacity:.5">smart-classifier v1</span>
+  </div>
+</div>
 
-AI ACTIVE
-Unstructured data → auto-classified → structured storage
-smart-classifier v1
-⚡ AI Input
-📦 Records
-📤 Export
+<!-- ══════════ TABS ══════════ -->
+<div style="background:var(--royal-mid);border-bottom:1px solid var(--border-gold);">
+  <div class="tabs-bar">
+    <button class="tab active" onclick="switchTab('input',this)">⚡ AI Input</button>
+    <button class="tab" onclick="switchTab('records',this)">📦 Records</button>
+    <button class="tab" onclick="switchTab('export',this)">📤 Export</button>
+  </div>
+</div>
 
+<!-- ══════════ MAIN ══════════ -->
+<div class="main">
 
+  <!-- INPUT PANEL -->
+  <div id="panel-input" class="panel active">
+    <div class="two-col">
+      <div>
+        <div class="gold-box">
+          <div class="corner-mark tl"></div>
+          <div class="corner-mark tr"></div>
+          <div class="corner-mark bl"></div>
+          <div class="corner-mark br"></div>
+          <div class="box-label">Raw Data Input</div>
+          <textarea id="rawInput" class="data-textarea" placeholder="မည်သည့် format မဆို ထည့်နိုင်သည်…"></textarea>
+          <div class="chip-row">
+            <span style="font-size:0.7rem;color:var(--muted-on-dark);align-self:center;opacity:.6">Try:</span>
+            <div class="chip" onclick="fillEx(0)">ငှားရန်</div>
+            <div class="chip" onclick="fillEx(1)">ရောင်းရန်</div>
+            <div class="chip" onclick="fillEx(2)">Client</div>
+            <div class="chip" onclick="fillEx(3)">Schedule</div>
+          </div>
+          <div class="btn-row">
+            <button class="btn btn-gold" id="storeBtn" onclick="processData()">⚡ AI Classify & Store</button>
+            <button class="btn btn-ghost" onclick="document.getElementById('rawInput').value=''">Clear</button>
+          </div>
+        </div>
 
+        <div class="thinking-box" id="thinkBox">
+          <div class="th-header">
+            <span>🤖 AI Processing</span>
+            <div class="dots"><span></span><span></span><span></span></div>
+          </div>
+          <div class="th-steps" id="thSteps"></div>
+        </div>
 
-RAW DATA INPUT
-Try:
-ငှားရန်
-ရောင်းရန်
-Client
-Schedule
-⚡ AI Classify & Store Clear
-// system.log
-clear
+        <div class="result-card" id="resultCard">
+          <div class="rc-head">
+            <div class="rc-title-row">
+              <span id="rIcon">📋</span>
+              <span class="rc-title" id="rTitle">Classified</span>
+              <span class="cat-pill" id="rBadge">TYPE</span>
+            </div>
+            <span class="rc-table-tag" id="rTable">→ table</span>
+          </div>
+          <div class="rc-body">
+            <div class="field-grid" id="fieldGrid"></div>
+            <div class="conf-row">
+              <span>Confidence</span>
+              <div class="conf-track"><div class="conf-fill" id="confFill" style="width:0%"></div></div>
+              <span id="confPct" style="color:var(--gold)">0%</span>
+            </div>
+          </div>
+          <div class="rc-actions">
+            <button class="btn btn-gold btn-sm" onclick="confirmStore()">✅ Save to Database</button>
+            <button class="btn btn-ghost btn-sm" onclick="document.getElementById('resultCard').classList.remove('show')">Discard</button>
+          </div>
+        </div>
+      </div>
 
-🔍
-initSystem ready · Ko Pyae Real Estate CRM
-initSmart classifier engine loaded (offline-ready)
-initTables: rentals · sales · clients · schedules
-0
-TOTAL RECORDS
-0
-RENTALS
-0
-SALES
-0
-CLIENTSconst CACHE_NAME = 'kopyae-re-v1';
-const ASSETS = [
-  './',
-  './index.html',
-  './manifest.json',
-  './icon-192.png',
-  './icon-512.png'
-];
+      <div class="log-panel">
+        <div class="log-head">
+          <span class="log-title">// system.log</span>
+          <button class="log-clear" onclick="clearLog()">clear</button>
+        </div>
+        <div class="search-row">
+          <input class="search-in" id="searchIn" placeholder="Search records…" onkeydown="if(event.key==='Enter')doSearch()"/>
+          <button class="search-go" onclick="doSearch()">🔍</button>
+        </div>
+        <div class="log-body" id="sysLog">
+          <div class="le le-info"><span class="le-time">init</span>System ready · Ko Pyae Real Estate CRM</div>
+          <div class="le le-ai"><span class="le-time">init</span>Smart classifier engine loaded (offline-ready)</div>
+          <div class="le le-info"><span class="le-time">init</span>Tables: rentals · sales · clients · schedules</div>
+        </div>
+      </div>
+    </div>
 
-self.addEventListener('install', (event) => {
-  event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => cache.addAll(ASSETS))
-  );
-  self.skipWaiting();
-});
+    <div class="stats-row">
+      <div class="stat-card">
+        <div class="stat-n" id="st-all">0</div>
+        <div class="stat-l">Total Records</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" id="st-rent" style="color:#50C878">0</div>
+        <div class="stat-l">Rentals</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" id="st-sale">0</div>
+        <div class="stat-l">Sales</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-n" id="st-cli" style="color:#89B4FA">0</div>
+        <div class="stat-l">Clients</div>
+      </div>
+    </div>
+  </div>
 
-self.addEventListener('activate', (event) => {
-  event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
-  );
-  self.clients.claim();
-});
+  <!-- RECORDS PANEL -->
+  <div id="panel-records" class="panel">
+    <div class="records-section">
+      <div class="rec-header">
+        <div class="section-title-gold" style="flex:1">Stored Records</div>
+      </div>
+      <div class="records-list" id="recList"></div>
+    </div>
+  </div>
 
-self.addEventListener('fetch', (event) => {
-  event.respondWith(
-    caches.match(event.request).then((cached) => {
-      if (cached) return cached;
-      return fetch(event.request).then((response) => {
-        if (response && response.status === 200 && event.request.method === 'GET') {
-          const respClone = response.clone();
-          caches.open(CACHE_NAME).then((cache) => cache.put(event.request, respClone));
-        }
-        return response;
-      }).catch(() => cached);
-    })
-  );
-});
+  <!-- EXPORT PANEL -->
+  <div id="panel-export" class="panel">
+    <div class="export-box">
+      <div class="eb-head">📤 Export Data</div>
+      <div class="eb-body">
+        <p>Ko Pyae Real Estate မှတ်တမ်းအားလုံးကို CSV သို့မဟုတ် JSON ဖြင့် export လုပ်နိုင်သည်။</p>
+        <div class="btn-row">
+          <button class="btn btn-gold" onclick="exportCSV()">📊 Export CSV (Excel)</button>
+          <button class="btn btn-ghost" onclick="exportJSON()">💾 JSON Backup</button>
+          <button class="btn btn-ghost" onclick="window.print()">🖨️ Print</button>
+        </div>
+        <div class="danger-row">
+          <p style="font-size:0.82rem;color:var(--muted-on-dark);margin-bottom:12px;">⚠️ မှတ်တမ်းအားလုံး ဖျက်ရန် — ပြန်မရ</p>
+          <button class="btn-danger" onclick="nukeAll()">🗑️ Delete All Records</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
+<script src="./js/storage.js"></script>
+<script src="./js/classifier.js"></script>
+<script src="./js/ui.js"></script>
+<script src="./js/app.js"></script>
 
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('./service-worker.js')
+      .then(reg => console.log('✓ Service Worker registered'))
+      .catch(err => console.error('✗ Service Worker registration failed:', err));
+  }
+</script>
+</body>
+</html>
